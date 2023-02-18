@@ -1,0 +1,15 @@
+Pentru a incepe acest README vreau sa mentionez faptul ca am luat toate fisierele care mi s-au parut importante din scheletul temei si le-am pus intr-un loc.
+Majoritatea codului este din exemplele voastre, eu doar l-am facut sa mearga si am mai adaugat cod acolo unde am stiut.
+
+Am adaugat cod in handle_client_request:
+    - m-am uitat pe sample in http-parser/test_get_request_path si am vazut cum sa scot cererea de la client
+    - nu-mi dadea calea buna asa ca am printat cererea si am vazut ca o primesc pe bucati
+    - nu stiam ce sa fac in aceasta situatie asa ca mi-am construit singura calea cu ./path.dat
+    - am deschis fisierul si am trimis mesajele corespunzatoare
+
+Si am mai adaugat cod in send_message:
+    - dupa ce scot cererea clientului incerc sa ii raspund inapoi
+    - daca n-am fisierul ma opresc si inchid conexiunea ca imi luam timeout altfel
+    - salvez intr-o structura stat informatiile despre fisier
+    - incep sa trimit mesajul inapoi intr-un while pentru ca sendfile mai da rateuri si nu trimite tot deodata
+    - iau dimensiunea maxima pe care pot sa o trimit si o trimit pana cand size-ul fisierului meu devine 0
